@@ -11,7 +11,15 @@ This is an instance repo of the bot running on #cfa-fellows on freenode.
 
 You can test your hubot by running the following.
 
-    % bin/hubot
+```
+export HUBOT_IRC_SERVER=irc.freenode.net;
+export HUBOT_IRC_NICK="testbot37373739";
+export HUBOT_IRC_ROOMS="#cfa-test";
+export HUBOT_IRC_UNFLOOD="true";
+
+bin/hubot -a irc --name CfAWindBreaker
+```
+
 
 You'll see some start up output about where your scripts come from and a
 prompt.
@@ -40,19 +48,6 @@ want hubot to have. Read up on what you can do with hubot in the [Scripting Guid
 You can also pick you scripts you may want to do add [here](http://hubot-script-catalog.herokuapp.com/) and add their names to `hubot-scripts`.
 
 ### Redis Persistence
-
-If you are going to use the `redis-brain.coffee` script from `hubot-scripts`
-(strongly suggested), you will need to add the Redis to Go addon on Heroku which requires a verified
-account or you can create an account at [Redis to Go][redistogo] and manually
-set the `REDISTOGO_URL` variable.
-
-    % heroku config:add REDISTOGO_URL="..."
-
-If you don't require any persistence feel free to remove the
-`redis-brain.coffee` from `hubot-scripts.json` and you don't need to worry
-about redis at all.
-
-[redistogo]: https://redistogo.com/
 
 If you run locally, unless you spin up redis, you will probably get some warnings.
 
@@ -103,43 +98,8 @@ this functionality you can follow the following steps.
 To enable third-party scripts that you've added you will need to add the package
 name as a double quoted string to the `external-scripts.json` file in this repo.
 
-## Deployment
-
-    % heroku create --stack cedar
-    % git push heroku master
-    % heroku ps:scale app=1
-
-If your Heroku account has been verified you can run the following to enable
-and add the Redis to Go addon to your app.
-
-    % heroku addons:add redistogo:nano
-
-If you run into any problems, checkout Heroku's [docs][heroku-node-docs].
-
-You'll need to edit the `Procfile` to set the name of your hubot.
-
-More detailed documentation can be found on the
-[deploying hubot onto Heroku][deploy-heroku] wiki page.
-
-### Deploying to UNIX or Windows
-
-If you would like to deploy to either a UNIX operating system or Windows.
-Please check out the [deploying hubot onto UNIX][deploy-unix] and
-[deploying hubot onto Windows][deploy-windows] wiki pages.
-
-[heroku-node-docs]: http://devcenter.heroku.com/articles/node-js
-[deploy-heroku]: https://github.com/github/hubot/blob/master/docs/deploying/heroku.md
-
 
 ## Restart the bot
 
 You may want to get comfortable with `heroku logs` and `heroku restart`
 if you're having issues.
-```
-export HUBOT_IRC_SERVER=irc.freenode.net;
-export HUBOT_IRC_NICK="testbot37373739";
-export HUBOT_IRC_ROOMS="#cfa-test";
-export HUBOT_IRC_UNFLOOD="true";
-
-bin/hubot -a irc --name CfAWindBreaker
-```
