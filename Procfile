@@ -1,1 +1,1 @@
-web: bin/hubot -a campfire -n CfAWindBreaker
+web: bin/hubot -a irc -n CfAWindBreaker
